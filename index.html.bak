@@ -401,9 +401,7 @@
   </style>
 </head>
 <body>
-<div class="header-bar">
-    24-Hour Service: <strong>877-742-3665</strong> &nbsp;&nbsp; | &nbsp;&nbsp; ABOUT US &nbsp;&nbsp; | &nbsp;&nbsp; CONTACT &nbsp;&nbsp; <i class="fa fa-search"></i>
-  </div>
+
   <!-- Main Header -->
   <header class="main-header">
     <div class="container">
@@ -487,7 +485,7 @@
       <p>Your dependable source for electric motor and generator service, parts & repairs.</p>
       <div class="hero-buttons">
         <a href="services.html">Our Services</a>
-        <a href="#">Our Story</a>
+        <a href="your_story.html">Our Story</a>
       </div>
     </div>
   </section>
