@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hero Slider with Mega Menu</title>
+  <!-- Font Awesome CDN for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; }
+    .main-header {
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .main-header .container {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 30px;
+    }
+    .logo { display: flex; align-items: center; }
+    .logo img { height: 54px; margin-right: 12px; }
+    .company-name { font-size: 30px; color: #184a7c; font-weight: bold; line-height: 1.1; }
+    .electric { font-family: 'Brush Script MT', cursive; font-size: 19px; color: #184a7c; }
+    .tagline { font-size: 13px; color: #4e7ca1; font-weight: normal; }
+
+    /* Navigation & Mega Menu */
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      position: relative;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropbtn {
+      color: #222;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 8px 0;
+      transition: color 0.2s;
+      cursor: pointer;
+      display: inline-block;
+      background: none;
+      border: none;
+      outline: none;
+    }
+    .dropbtn:hover,
+    .dropdown:hover .dropbtn {
+      color: #184a7c;
+    }
+    /* Mega Menu for SERVICES */
+    .mega-menu {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      width: 500px;
+      max-width: 98vw;
+      background: #0057a3;
+      color: #fff;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+      padding: 36px 30px 24px 30px;
+      z-index: 100;
+      border-radius: 0 0 6px 6px;
+      justify-content: space-between;
+      gap: 0px;
+      overflow-x: auto;
+    }
+    .dropdown:hover .mega-menu {
+      display: flex;
+    }
+    .mega-column {
+      flex: 1;
+      min-width: 240px;
+      margin-right: 24px;
+      border-right: 1px solid #1976d2;
+      padding-right: 24px;
+    }
+    .mega-column:last-child {
+      border-right: none;
+      margin-right: 0;
+      padding-right: 0;
+    }
+    .mega-column h4 {
+      color: #fff;
+      font-size: 16px;
+      margin-bottom: 16px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+    .mega-column a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      margin-bottom: 10px;
+      font-size: 15px;
+      transition: color 0.2s;
+      padding: 2px 0;
+    }
+    .mega-column a:hover {
+      color: #ffd700;
+      text-decoration: underline;
+    }
+
+    /* Dropdown for ENGINEERED SOLUTIONS, INDUSTRIES, RESOURCES */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 230px;
+      background: #0074d9;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+      border-radius: 0 0 6px 6px;
+      z-index: 999;
+      padding: 0;
+      margin-top: 0;
+    }
+    .dropdown-content a {
+      display: block;
+      color: #fff;
+      padding: 12px 18px;
+      text-decoration: none;
+      border-bottom: 1px solid #005fa3;
+      font-size: 15px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .dropdown-content a:last-child {
+      border-bottom: none;
+    }
+    .dropdown-content a:hover {
+      background: #005fa3;
+      color: #ffd700;
+    }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .nav-menu > a, .nav-menu > .cta-button {
+      color: #222;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: color 0.2s;
+      padding: 8px 0;
+    }
+    .nav-menu > a:hover {
+      color: #184a7c;
+    }
+    .cta-button {
+      background: #184a7c;
+      color: #fff !important;
+      padding: 10px 26px;
+      border-radius: 3px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-left: 24px;
+      transition: background 0.2s;
+      white-space: nowrap;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+    }
+    .cta-button:hover { background: #0f2d4c; color: #fff; }
+
+    /* Hero Slider */
+    .hero-slider {
+      position: relative;
+      width: 100%;
+      height: 410px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .hero-slide {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1s;
+      z-index: 1;
+    }
+    .hero-slide.active {
+      opacity: 1;
+      z-index: 2;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(24,74,124,0.50);
+      z-index: 3;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 4;
+      color: #fff;
+      margin-left: 8%;
+      max-width: 600px;
+    }
+    .hero-content h1 {
+      font-size: 2.4rem;
+      font-weight: bold;
+      margin-bottom: 18px;
+      line-height: 1.15;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    }
+    .hero-content p {
+      font-size: 1.18rem;
+      margin-bottom: 28px;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+    }
+    .hero-buttons a {
+      background: #fff;
+      color: #184a7c;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      font-size: 1rem;
+      border: 2px solid #184a7c;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+    }
+    .hero-buttons a:hover {
+      background: #184a7c;
+      color: #fff;
+    }
+
+    /* Footer Styles */
+    .site-footer {
+      background: #4a5255;
+      color: #fff;
+      font-size: 16px;
+      margin-top: 40px;
+    }
+    .footer-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 30px 30px 30px;
+      flex-wrap: wrap;
+    }
+    .footer-left {
+      flex: 1 1 220px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .footer-logo-circle img {
+      width: 220px;
+      height: 220px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: #3b4143;
+      padding: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    }
+    .footer-center {
+      flex: 2 1 320px;
+      padding: 0 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .footer-social {
+      margin-bottom: 18px;
+    }
+    .footer-social a {
+      color: #fff;
+      font-size: 22px;
+      margin-right: 16px;
+      transition: color 0.2s;
+      text-decoration: none;
+    }
+    .footer-social a:hover { color: #1da1f2; }
+    .footer-address {
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+    .footer-contact-btn {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 10px 24px;
+      background: #fff;
+      color: #184a7c;
+      font-weight: bold;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+      border: 2px solid #184a7c;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+    }
+    .footer-contact-btn:hover {
+      background: #184a7c;
+      color: #fff;
+    }
+    .footer-right {
+      flex: 1 1 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 18px;
+    }
+    .footer-certifications img {
+      height: 44px;
+      margin: 0 8px 8px 0;
+      background: #fff;
+      border-radius: 6px;
+      padding: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .footer-login label {
+      font-size: 15px;
+      margin-bottom: 2px;
+      color: #fff;
+    }
+    .footer-login select {
+      margin-top: 4px;
+      padding: 6px 10px;
+      border-radius: 3px;
+      border: none;
+      font-size: 15px;
+    }
+    .footer-bottom {
+      background: #0074D9;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 30px;
+      font-size: 15px;
+    }
+    .footer-links a {
+      color: #fff;
+      text-decoration: underline;
+      margin: 0 4px;
+    }
+    .footer-links a:hover { color: #222; }
+    @media (max-width: 1000px) {
+      .mega-menu {
+        width: 98vw;
+        left: 0;
+        flex-direction: column;
+        gap: 0;
+        padding: 16px 8px;
+        min-width: 0;
+      }
+      .mega-column {
+        border-right: none;
+        border-bottom: 1px solid #1976d2;
+        margin-bottom: 20px;
+        padding-right: 0;
+        min-width: 0;
+      }
+      .mega-column:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+    }
+    @media (max-width: 900px) {
+      .main-header .container, .nav-menu { flex-direction: column; align-items: flex-start; padding: 10px 12px; }
+      .nav-menu { gap: 12px; margin-left: 0; width: 100%; justify-content: flex-start; }
+      .cta-button { margin-left: 0; margin-top: 10px; }
+      .hero-slider { height: 220px; }
+      .hero-content { margin-left: 4%; }
+      .hero-content h1 { font-size: 1.3rem; }
+      .hero-content p { font-size: 1rem; }
+      .footer-main {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 30px 10px 20px 10px;
+      }
+      .footer-left, .footer-center, .footer-right {
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin-bottom: 24px;
+      }
+      .footer-right { align-items: center; }
+      .footer-certifications img { margin: 0 6px 6px 0; }
+      .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding: 12px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Header -->
+  <header class="main-header">
+    <div class="container">
+      <div class="logo">
+        <!-- <img src="images/logo.png" alt="Logo"> -->
+        <span class="company-name">
+          Electrolab <br><span class="electric">Sidhivinayak Electrical</span>
+          <span class="tagline">motors & repair services</span>
+        </span>
+      </div>
+      <nav class="nav-menu">
+        <!-- Mega Menu for SERVICES -->
+        <div class="dropdown">
+          <a href="#" class="dropbtn">SERVICES</a>
+          <div class="mega-menu">
+            <div class="mega-column">
+              <h4>SHOP SERVICES</h4>
+              <a href="#">Electric Motor Repair Services</a>
+              <a href="#">Gearbox Rebuild & Repair</a>
+              <a href="#">MG Set Repair</a>
+              <a href="#">Machine Shop Services</a>
+              <a href="#">Motor Drive Repair</a>
+              <a href="#">Motor Rebuild & Rewinding</a>
+              <a href="#">Pump Repair</a>
+              <a href="#">Servo Motor Repair</a>
+            </div>
+            <div class="mega-column">
+              <h4>PREVENTATIVE & PREDICTIVE MAINTENANCE</h4>
+              <a href="#">Motor Winding shortage analysis</a>
+              <a href="#">Magnetic Field Analysis</a>
+              <a href="#">Motion Amplification Monitoring</a>
+              <a href="#">Oil Analysis</a>
+              <a href="#">Vibration Analysis</a>
+              <a href="#">Winding Analysis</a>
+            </div>
+          </div>
+        </div>
+        <!-- Dropdown for ENGINEERED SOLUTIONS -->
+        <div class="dropdown">
+          <a href="#" class="dropbtn">ENGINEERED SOLUTIONS</a>
+          <div class="dropdown-content">
+            <a href="#">coming soon</a>
+       
+          </div>
+        </div>
+        <!-- Dropdown for INDUSTRIES -->
+        <div class="dropdown">
+          <a href="#" class="dropbtn">INDUSTRIES</a>
+          <div class="dropdown-content">
+            <a href="#">Automotive</a>
+            <a href="#">Steel</a>
+            <a href="#">Mining</a>
+            <a href="#">Pulp & Paper</a>
+            <a href="#">Utilities</a>
+          </div>
+        </div>
+        <!-- Dropdown for RESOURCES -->
+        <div class="dropdown">
+          <a href="#" class="dropbtn">RESOURCES</a>
+          <div class="dropdown-content">
+            <a href="#">Ebooks</a>
+            <a href="#">Case Studies</a>
+            <a href="#">Videos</a>
+            <a href="#">Blogs</a>
+            <a href="#">Partners</a>
+          </div>
+        </div>
+        <a href="#" class="cta-button">GET A QUOTE</a>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- Hero Slider -->
+  <section class="hero-slider">
+    <div class="hero-slide active" style="background-image: url('images/hero1.jpg');"></div>
+    <div class="hero-slide" style="background-image: url('images/hero2.jpg');"></div>
+    <div class="hero-slide" style="background-image: url('images/hero3.jpg');"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Serious Service for Electric Motors & Generators</h1>
+      <p>Your dependable source for electric motor and generator service, parts & repairs.</p>
+      <div class="hero-buttons">
+        <a href="services.html">Our Services</a>
+        <a href="#">Our Story</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Simple slider logic
+    const slides = document.querySelectorAll('.hero-slide');
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 2000);
+  </script>
+  
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-left">
+        <div class="footer-logo-circle">
+          <!-- Replace with your SVG or image -->
+          <img src="images/footer_br.jpg" alt="Renown Electric Logo" />
+        </div>
+      </div>
+      <div class="footer-center">
+        <div class="footer-social">
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fas fa-rss"></i></a>
+        </div>
+        <div class="footer-address">
+          <strong>Sidhivinayak Electric Office</strong><br>
+          <i class="fas fa-map-marker-alt"></i> Artung<br>
+          Samalpur, Balasore, Near Vigilance Office
+        </div>
+        <div class="footer-address" style="margin-top:16px;">
+          <strong>Motor Winding Service</strong><br>
+          <i class="fas fa-map-marker-alt"></i> Near Vigilance Office<br>
+          Samalpur, Artung
+        </div>
+        <a href="#" class="footer-contact-btn">Contact Us</a>
+      </div>
+	   <div class="footer-right">
+		<div class="footer-logo-circle">
+    <!-- A4 certificate preview (replace with your actual image) -->
+		<img src="images/cert.jpg" alt="A4 Certificate" style="width:50mm; max-width:100%; height:auto; border:0.2px solid #ccc; box-shadow:0 2px 8px rgba(0,0,0,0.12);" />
+		<div style="font-size:12px; color:#fff; margin-top:25px;">Ministry of Micro, Small and Medium Enterprises</div>
+		  </div>
+		</div>
+
+      
+        <div class="footer-login">
+          <label for="customer-login">Customer Login</label><br>
+          <select id="customer-login">
+            <option>Login</option>
+            
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copyright">
+        &copy; 2025 All Rights Reserved, Sidhivinayak Electricals
+      </div>
+      <div class="footer-links">
+        <a href="#">Sitemap</a> | 
+        <a href="#">Privacy</a> | 
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
