@@ -1,224 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Electric Motor & Generator Repair Services | Electrolab Sidhivinayak Electrical</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Our Company | Sidhivinayak Electric Motors & Repair serv.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    body { font-family: Arial, sans-serif; background: #f5f5f5; color: #222; margin: 0; }
-    .header-bar {
-      background: #f7fafd;
-      color: #184a7c;
-      font-size: 0.97rem;
-      padding: 8px 0 6px 0;
-      text-align: right;
-      padding-right: 32px;
-      border-bottom: 1px solid #e3e3e3;
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f4f7fa;
+      margin: 0;
+      padding: 0;
+      color: #222;
     }
-    .main-header {
-      background: #fff;
-      padding: 22px 0 8px 0;
-      text-align: center;
-      border-bottom: 1px solid #e3e3e3;
-    }
-    .main-header img {
-      height: 54px;
-      margin-bottom: 4px;
-    }
-    .main-header h1 {
-      color: #184a7c;
-      font-family: Georgia, 'Times New Roman', Times, serif;
-      font-size: 2.1rem;
-      margin: 0 0 6px 0;
-      font-weight: normal;
-    }
-    .main-nav {
-      display: flex;
-      justify-content: center;
-      background: #fff;
-      border-bottom: 1px solid #e3e3e3;
-      gap: 30px;
-      padding: 12px 0;
-    }
-    .main-nav a {
-      color: #184a7c;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.07rem;
-      padding: 6px 12px;
-      border-radius: 2px;
-      transition: background 0.15s;
-    }
-    .main-nav a:hover, .main-nav .active {
+    header {
       background: #184a7c;
       color: #fff;
-    }
-    /* Banner */
-    .services-banner {
-      background: url('images/hero-services.jpg') center/cover no-repeat;
-      min-height: 120px;
-      display: flex;
-      align-items: flex-end;
-      position: relative;
-    }
-    .services-banner::after {
-      content: "";
-      background: rgba(24,74,124,0.88);
-      position: absolute; top:0; left:0; right:0; bottom:0;
-      z-index: 1;
-    }
-    .services-banner-content {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      padding: 34px 0 22px 0;
+      padding: 32px 0 24px 0;
       text-align: center;
+      box-shadow: 0 2px 8px rgba(24,74,124,0.07);
     }
-    .services-banner-content h1 {
-      color: #fff;
-      font-size: 2.4rem;
+    header h1 {
       margin: 0;
-      font-weight: bold;
-      letter-spacing: 0.5px;
+      font-size: 2.6rem;
+      letter-spacing: 1px;
     }
-    /* Main Section */
-    .main-content {
-      max-width: 1100px;
-      margin: 0 auto;
+    header p {
+      margin: 12px 0 0 0;
+      font-size: 1.15rem;
+      color: #e0eaf6;
+    }
+    main {
+      max-width: 720px;
+      margin: 36px auto;
       background: #fff;
-      border-radius: 8px;
-      margin-top: 38px;
-      margin-bottom: 32px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-      padding: 38px 36px 32px 36px;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(24,74,124,0.08);
+      padding: 36px 32px;
     }
-    .intro-row {
-      display: flex;
-      gap: 36px;
-      align-items: flex-start;
-      margin-bottom: 36px;
-    }
-    .intro-row img {
-      width: 340px;
-      border-radius: 7px;
-      box-shadow: 0 2px 12px rgba(24,74,124,0.08);
-      background: #eee;
-      object-fit: cover;
-      min-height: 200px;
-    }
-    .intro-text {
-      flex: 1;
-    }
-    .intro-text h2 {
+    .section-title {
+      font-size: 1.5rem;
       color: #184a7c;
-      font-size: 1.35rem;
-      margin-top: 0;
-      margin-bottom: 10px;
-    }
-    .intro-text p {
-      margin-top: 0;
-      margin-bottom: 13px;
-      font-size: 1.08rem;
-      line-height: 1.7;
-    }
-    h2 {
-      color: #184a7c;
-      margin-top: 36px;
       margin-bottom: 12px;
-      font-size: 1.25rem;
     }
-    ul {
-      margin: 12px 0 12px 24px;
-      padding: 0;
+    .story-text {
+      font-size: 1.07rem;
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 18px;
     }
-    li {
-      margin-bottom: 7px;
+    .cert-list, .service-list, .area-list {
+      list-style: none;
+      padding-left: 0;
+      margin-bottom: 24px;
     }
-    .highlight-box {
-      background: #e3f1ff;
-      border-left: 4px solid #184a7c;
-      padding: 16px 18px;
-      margin: 24px 0;
-      border-radius: 6px;
-      font-size: 1rem;
-      color: #184a7c;
+    .cert-list li, .service-list li, .area-list li {
+      margin-bottom: 6px;
+      padding-left: 18px;
+      position: relative;
     }
-    @media (max-width: 900px) {
-      .main-content { padding: 14px 4vw 22px 4vw; }
-      .intro-row { flex-direction: column; gap: 18px; }
-      .intro-row img { width: 100%; max-width: 400px; }
+    .cert-list li::before, .service-list li::before, .area-list li::before {
+      content: "✔";
+      color: #3570b5;
+      position: absolute;
+      left: 0;
+    }
+    .profile-pic {
+      float: right;
+      width: 180px;
+      height: auto;
+      margin: 0 0 12px 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(24, 74, 124, 0.2);
+      object-fit: cover;
+    }
+    @media (max-width: 600px) {
+      main {
+        padding: 18px 6vw;
+      }
+      header {
+        padding: 24px 0 14px 0;
+      }
+      .profile-pic {
+        float: none;
+        display: block;
+        margin: 0 auto 18px auto;
+        width: 70vw;
+        max-width: 220px;
+      }
     }
   </style>
 </head>
 <body>
-  
-  <header class="main-header">
-   
-    <h1>Electrolab Sidhivinayak Electrical</h1>
-    <div style="font-size:1.13rem; color:#184a7c; font-weight: 500;">motors &amp; repair inc.</div>
+  <header>
+    <h1>Our Company</h1>
+    <p>Committed to Delivering Quality Electric Motor and Generator Repair Services</p>
   </header>
-  <section class="services-banner">
-    <div class="services-banner-content">
-      <h1>Electric Motor &amp; Generator Repair Services</h1>
-    </div>
-  </section>
-  <main class="main-content">
-    <div class="intro-row">
-      <img src="images/motor_service.jpg" alt="Electric Motor Service">
-      <div class="intro-text">
-        <h2>Your Go-To Resource for Electric Motors &amp; Generators</h2>
-        <p>
-          Whether you need repair services, preventative maintenance, or a service visit from an engineer, <strong>Electrolab Sidhivinayak Electrical</strong> does it all.
-        </p>
-        <p>
-          Our comprehensive analyses and tests for electric motors &amp; generators help your business avoid problems and downtime. If an electric motor or generator system needs repair, our team will come to you or fully service the rebuild in our own facility. We help businesses in our service area throughout India every day!
-        </p>
-        <p>
-          Electric motors and generators play a critical role in a wide range of industrial, municipal and commercial operations. When electric motors and generators start showing signs of failure, facility managers face a tough decision: <strong>repair or replace?</strong>
-        </p>
-      </div>
-    </div>
-    <div class="highlight-box">
-      <strong>General Guidance for Repair vs Replace:</strong><br>
-      If the cost of repairing an existing electrical motor is more than <strong>65%</strong> the cost of replacing it, replacement is usually more cost-effective-especially if the new component is more efficient. But, other factors like design, age, size, lead times, and application requirements must be considered.
-    </div>
-    <h2>Our Service Offerings</h2>
-    <ul>
-      <li>Field Services: Brush Survey, In-Field Rewinding, Modernization Survey, Motion Amplification Monitoring, Motor Management, On-Site Machining, Sheave Regrooving, Turning and Undercutting</li>
-      <li>Shop Services: Gearbox Rebuild and Repair, Generator Rebuild and Rewinding, Machine Shop Services, Motor Drive Repair, Motor Rebuilding and Rewinding, Pump Repair, Servo Motor Repair, Sheave Regrooving and Manufacturing</li>
-      <li>Preventative &amp; Predictive Maintenance: Dynamic Balancing, Infrared Thermography, Laser Alignment, Motion Amplification Monitoring, Oil Analysis, Vibration Analysis, Winding Analysis</li>
-    </ul>
-    <h2>Key Considerations for Deciding Between Motor Repair or Replacement</h2>
-    <ul>
-      <li><strong>Cost:</strong> If repair exceeds 65% of replacement, replacement is usually better.</li>
-      <li><strong>Motor Design:</strong> For special or obsolete motors, repair may be the only option.</li>
-      <li><strong>Age, Size, Lead Time:</strong> Consider the motor’s age, size, repair requirements, and delivery times.</li>
-      <li><strong>Performance &amp; Efficiency:</strong> Newer motors may offer better efficiency and reliability.</li>
-      <li><strong>Application Review:</strong> Sometimes a better or modified design can improve reliability.</li>
-    </ul>
-    <h2>Important Specifications for Electric Motor Repair</h2>
-    <ul>
-      <li>The intent and scope of the operation</li>
-      <li>The relevant standards</li>
-      <li>The repair procedures</li>
-      <li>The testing and quality control procedures</li>
-    </ul>
-    <p>
-      Providing this information helps ensure the repaired motor meets your facility’s needs.
-    </p>
-    <h2>Why Choose Electrolab Sidhivinayak Electrical?</h2>
-    <ul>
-      <li>Generator rebuilding and rewinding</li>
-      <li>Gearbox rebuilding and overhaul</li>
-      <li>Sheave regrooving and manufacturing</li>
-      <li>Machine shop services</li>
-      <li>Coil manufacturing</li>
-      <li>Pump repair</li>
-      <li>AC &amp; DC Motor control and drive repair</li>
-    </ul>
-    <p>
-      <strong>Contact our team today</strong> to learn more about our services or to schedule an appointment. Let our experts perform your motor repair services!
-    </p>
+  <main>
+    <section>
+      <h2 class="section-title">About Sidhivinayak Electricals</h2>
+      <img src="images/founder-Picture.jpg" alt="Founder Picture" class="profile-pic" />
+      <p class="story-text">
+        Founded recently with a vision to provide top-quality electric motor and generator repair services, Sidhivinayak Electricals (Electrolab) Electric Motors & Repair Inc. is based in Concord, Ontario. Though a startup, we are equipped with modern facilities and a passionate team dedicated to excellence in electric and mechanical motor repair, remanufacture, overhaul, and engineering support.
+      </p>
+      <p class="story-text">
+        We are committed to building strong relationships with our customers by offering personalized service and reliable solutions tailored to their unique needs.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="section-title">Our Certification</h2>
+      <p class="story-text">
+        Sidhivinayak Electricals (Electrolab) is proud to hold the <span class="highlight">MSME (Micro, Small, and Medium Enterprises) certification</span>, which validates our commitment to quality and supports our growth as a trusted service provider.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="section-title">How We Empower Our Customers</h2>
+      <p class="story-text">
+        We understand that downtime can impact productivity and profitability. Our goal is to minimize interruptions through expert repairs, thorough diagnostics, and proactive maintenance. Sidhivinayak Electricals (Electrolab) Electric strives to be a dependable partner, helping businesses maximize efficiency and maintain seamless operations.
+      </p>
+      <ul class="service-list">
+        <li>Reliability</li>
+        <li>Expertise</li>
+        <li>Efficiency</li>
+        <li>Customer-Centric Approach</li>
+        <li>Innovation</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="section-title">Service Areas</h2>
+      <p class="story-text">
+        As a growing startup, we currently serve clients primarily in the Concord and Greater Toronto Area, with plans to expand our reach as we grow.
+      </p>
+      <ul class="area-list">
+        <li>Concord, Ontario</li>
+        <li>Toronto, Ontario</li>
+        <li>Mississauga, Ontario</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="section-title">Our Services</h2>
+      <p class="story-text">
+        At <strong>ELECTROLAB</strong>, we offer a comprehensive range of high-quality electrical services to meet all your needs. Our experienced team is committed to providing reliable and efficient solutions for:
+      </p>
+      <ul>
+        <li><strong>Motor Winding:</strong> Precise and professional motor winding services to restore your motors to optimal performance.</li>
+        <li><strong>Motor Repairing:</strong> Expert motor repair services to fix any issues and ensure your motors run smoothly.</li>
+        <li><strong>Circuit Repairing:</strong> We diagnose and repair faulty circuits, ensuring safe and reliable electrical systems.</li>
+        <li><strong>Inverter Repairing:</strong> Specialized inverter repairs to keep your backup power systems running efficiently.</li>
+      </ul>
+      <p class="story-text">
+        With our expertise, we guarantee top-notch service, quick turnaround times, and customer satisfaction. Trust <strong>ELECTROLAB</strong> for all your electrical repair needs!
+      </p>
+    </section>
   </main>
 </body>
 </html>
